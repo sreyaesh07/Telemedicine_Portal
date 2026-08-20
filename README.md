@@ -7,8 +7,8 @@ consultations and receive digitally signed prescriptions.
 
 ## Deliverables
 - `requirements.md` — 5 Functional + 2 Non-Functional Requirements
-UML Use-Case Diagram
-Use-Case Flow Specification for "Book Consultation Slot"
+- UML Use-Case Diagram
+- Use-Case Flow Specification for "Book Consultation Slot"
 
 ## Actors
 - Patient
