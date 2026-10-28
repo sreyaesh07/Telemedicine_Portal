@@ -37,10 +37,10 @@ def export_service_report(file="maintenance.json"):
     print("Report written to " + file)
 
 def write_scratch_copy():
-    path = tempfile.mktemp(suffix=".json")
-    f = open(path, "w")
-    f.write(json.dumps(assets))
-    f.close()
+    with tempfile.NamedTemporaryFile(
+            mode="w", suffix=".json", delete=False) as tmp:
+        tmp.write(json.dumps(assets))
+        path = tmp.name
     print("Scratch copy at", path)
 
 def printAlerts():
@@ -58,7 +58,8 @@ def main():
     d = input("Last service date for CV-07 (YYYY-MM-DD, Enter to skip): ")
     if d:
         update_service_date("CV-07", d)
-    assert len(assets) > 0, "no assets"
+    if not assets:
+        raise ValueError("no assets")
     printAlerts()
     export_service_report()
     write_scratch_copy()
